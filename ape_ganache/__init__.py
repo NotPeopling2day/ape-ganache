@@ -25,7 +25,7 @@ def providers():
 
     yield "arbitrum", LOCAL_NETWORK_NAME, GanacheProvider
     yield "arbitrum", "mainnet-fork", GanacheForkProvider
-    yield "arbitrum", "goerli-fork", GanacheForkProvider
+    yield "arbitrum", "sepolia-fork", GanacheForkProvider
 
     yield "avalanche", LOCAL_NETWORK_NAME, GanacheProvider
     yield "avalanche", "mainnet-fork", GanacheForkProvider
@@ -41,7 +41,7 @@ def providers():
 
     yield "optimism", LOCAL_NETWORK_NAME, GanacheProvider
     yield "optimism", "mainnet-fork", GanacheForkProvider
-    yield "optimism", "goerli-fork", GanacheForkProvider
+    yield "optimism", "sepolia-fork", GanacheForkProvider
 
     yield "polygon", LOCAL_NETWORK_NAME, GanacheProvider
     yield "polygon", "mainnet-fork", GanacheForkProvider

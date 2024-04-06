@@ -26,7 +26,7 @@ NAME = "ganache"
 # Needed to test tracing support in core `ape test` command.
 pytest_plugins = ["pytester"]
 MAINNET_FORK_PORT = 9001
-GOERLI_FORK_PORT = 9002
+SEPOLIA_FORK_PORT = 9002
 
 
 def pytest_runtest_makereport(item, call):
@@ -204,14 +204,14 @@ def mainnet_fork_provider(name, networks, mainnet_fork_port):
 
 
 @pytest.fixture
-def goerli_fork_port():
-    return GOERLI_FORK_PORT
+def sepolia_fork_port():
+    return SEPOLIA_FORK_PORT
 
 
 @pytest.fixture
-def goerli_fork_provider(name, networks, goerli_fork_port):
-    with networks.ethereum.goerli_fork.use_provider(
-        name, provider_settings={"port": goerli_fork_port}
+def sepolia_fork_provider(name, networks, sepolia_fork_port):
+    with networks.ethereum.sepolia_fork.use_provider(
+        name, provider_settings={"port": sepolia_fork_port}
     ) as provider:
         yield provider
 

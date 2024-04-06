@@ -19,7 +19,7 @@ def mainnet_fork_contract_instance(owner, contract_container, mainnet_fork_provi
 
 @pytest.mark.fork
 def test_multiple_providers(
-    name, networks, connected_provider, mainnet_fork_port, goerli_fork_port
+    name, networks, connected_provider, mainnet_fork_port, sepolia_fork_port
 ):
     assert networks.active_provider.name == name
     assert networks.active_provider.network.name == LOCAL_NETWORK_NAME
@@ -32,12 +32,12 @@ def test_multiple_providers(
         assert networks.active_provider.network.name == "mainnet-fork"
         assert networks.active_provider.port == mainnet_fork_port
 
-        with networks.ethereum.goerli_fork.use_provider(
-            name, provider_settings={"port": goerli_fork_port}
+        with networks.ethereum.sepolia_fork.use_provider(
+            name, provider_settings={"port": sepolia_fork_port}
         ):
             assert networks.active_provider.name == name
-            assert networks.active_provider.network.name == "goerli-fork"
-            assert networks.active_provider.port == goerli_fork_port
+            assert networks.active_provider.network.name == "sepolia-fork"
+            assert networks.active_provider.port == sepolia_fork_port
 
         assert networks.active_provider.name == name
         assert networks.active_provider.network.name == "mainnet-fork"
@@ -103,7 +103,7 @@ def test_get_receipt(mainnet_fork_provider, mainnet_fork_contract_instance, owne
 
 @pytest.mark.fork
 def test_unlock_account_with_multiple_providers(
-    networks, connected_provider, mainnet_fork_port, goerli_fork_port
+    networks, connected_provider, mainnet_fork_port, sepolia_fork_port
 ):
     with networks.ethereum.mainnet_fork.use_provider(
         "ganache", provider_settings={"port": mainnet_fork_port}
@@ -111,8 +111,8 @@ def test_unlock_account_with_multiple_providers(
         imp_acc = connected_provider.account_manager[TEST_ADDRESS]
         assert isinstance(imp_acc, ImpersonatedAccount)
 
-        with networks.ethereum.goerli_fork.use_provider(
-            "ganache", provider_settings={"port": goerli_fork_port}
+        with networks.ethereum.sepolia_fork.use_provider(
+            "ganache", provider_settings={"port": sepolia_fork_port}
         ):
             imp_acc = connected_provider.account_manager[TEST_ADDRESS]
             assert isinstance(imp_acc, ImpersonatedAccount)
